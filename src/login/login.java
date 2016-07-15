@@ -51,14 +51,10 @@ public class login {
         DBmanager manager = new DBmanager();
         Integer rs = 1;
         try{
-            String sql = "INSERT INTO customers(CustomerID,Username,Password,CustomerName) VALUES (6,username,password,name)";
+            System.out.println("username:" + username);
+            String sql = "INSERT INTO customers(CustomerID,Username,Password,CustomerName)" + "VALUES (0,'" +username+"','"+password+"', '"+name+"')";
             manager.setup_connection();
           rs = manager.runUpdate(sql);
-//            while (rs.next()) {
-//                uname = rs.getString("username");
-//                pword = rs.getString("password");
-//                fname = rs.getString("CustomerName");
-//            }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
