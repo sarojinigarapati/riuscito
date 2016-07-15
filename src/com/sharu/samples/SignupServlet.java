@@ -17,7 +17,7 @@ import DBmanager.DBmanager;
 /**
  * Created by SAROJINI on 7/12/2016.
  */
-@WebServlet(name = "SignupServlet")
+@WebServlet(name = "SignupServlet", urlPatterns = {"/servlet/signup"})
 public class SignupServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         StringBuffer jb = new StringBuffer();
