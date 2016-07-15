@@ -31,7 +31,7 @@ public class SignupServlet extends HttpServlet {
         }
 
         String responseString = jb.toString();
-        boolean registered = false;
+        Integer registered = 0;
         JSONParser parser = new JSONParser();
         JSONObject joUser = null;
         try{
@@ -45,7 +45,7 @@ public class SignupServlet extends HttpServlet {
         }catch(Exception e){
             e.printStackTrace();
         }
-        if(registered == true){
+        if(registered == 1){
             response.getWriter().write("Hey, you have successfully signed up!!!");
             response.getWriter().flush();
             response.getWriter().close();

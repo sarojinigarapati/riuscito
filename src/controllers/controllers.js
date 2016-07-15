@@ -5,8 +5,7 @@
 /**
  * Created by SAROJINI on 7/12/2016.
  */
-
-gestire.controller('loginController',function($scope,$http){
+gestire.controller('loginController',[$scope,$http,function($scope,$http){
     $scope.handleLogin = function() {
         var data = {
             username: $scope.username,
@@ -27,7 +26,7 @@ gestire.controller('loginController',function($scope,$http){
                 console.log(response);
             });
     };
-});
+}]);
 
 gestire.controller('signupController',function($scope,$http){
     $scope.handleSignUp = function(){

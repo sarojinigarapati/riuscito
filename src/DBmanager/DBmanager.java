@@ -22,6 +22,15 @@ public class DBmanager {
         }
         return results;
     }
+    public int runUpdate(String sql) throws Exception{
+        try{
+            this.stmt = this.conn.createStatement();
+            stmt.executeUpdate(sql);
+        }catch (SQLException ex){
+            ex.printStackTrace();
+        }
+        return 1;
+    }
 
     public void setup_connection() throws Exception{
         try{

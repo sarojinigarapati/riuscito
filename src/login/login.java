@@ -47,26 +47,24 @@ public class login {
         }
         return false;
     }
-    public static boolean register(String username, String password, String name) throws Exception {
-        String uname = null, pword = null, fname = null;
+    public static int register(String username, String password, String name) throws Exception {
         DBmanager manager = new DBmanager();
-        ResultSet rs = null;
+        Integer rs = 1;
         try{
-            String sql = "INSERT INTO customers(Username,Password,CustomerName) VALUES (username,password,name)";
+            String sql = "INSERT INTO customers(CustomerID,Username,Password,CustomerName) VALUES (6,username,password,name)";
             manager.setup_connection();
-            rs = manager.runSelect(sql);
-            while (rs.next()) {
-                uname = rs.getString("username");
-                pword = rs.getString("password");
-                fname = rs.getString("CustomerName");
-            }
+          rs = manager.runUpdate(sql);
+//            while (rs.next()) {
+//                uname = rs.getString("username");
+//                pword = rs.getString("password");
+//                fname = rs.getString("CustomerName");
+//            }
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
-            if (rs != null) rs.close();
             manager.close_connection();
         }
-        return true;
+        return rs;
     }
 }
