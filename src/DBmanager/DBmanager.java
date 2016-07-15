@@ -6,6 +6,8 @@ package DBmanager;
 import java.sql.*;
 import java.util.*;
 import login.login;
+import com.sharu.samples.MyServlet;
+import com.sharu.samples.SignupServlet;
 public class DBmanager {
     Connection conn;
     Statement stmt;
