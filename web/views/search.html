@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+<div>
+    CustomerName<br>
+    <input type = "text" ng-model = "name">  <br>
+    <div class="dropdown">
+        <button class="dropbtn">Category</button>
+        <div class="dropdown-content">
+            <style>
+                    .dropdown {
+                        position: relative;
+                        display: inline-block;
+                    }
+
+            </style>
+            <a ng-click="selectDresses()">Dresses</a>
+            <a ng-click="selectAppliances()">Appliances</a>
+            <a ng-click = "selectElectronics()"> Electronics </a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.0/css/foundation.css"/>
     <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+      <%--<script type = "text/javascript" src="index.jsp"></script>--%>
       <%--<script type="text/javascript" src="controllers.js"></script>--%>
     <title>$Title$</title>
       <base href="/">
@@ -25,19 +26,17 @@
     var gestire = angular.module('gestire',['ngRoute']);
       gestire.config(function($routeProvider,$locationProvider){
           $locationProvider.html5Mode(true);
+          //console.log($locationProvider('login.html',src));
           $routeProvider
                   .when('/',
                           {
                               controller:'loginController',
-                              templateUrl: 'login.html'
-
-
+                              templateUrl: 'src/views/login.html'
                           })
                   .when('/signup',
                           {
                               controller:'signupController',
-                              templateUrl: 'signup.html'
-
+                              templateUrl: 'views/signup.html'
                           })
                   .otherwise({redirectTo:'/'});
       });
@@ -85,6 +84,56 @@
         };
 
     });
+      gestire.controller('searchController',function($scope,$http){
+          $scope.handleSearch = function(){
+              var data;
+              $scope.categories = [
+                  {
+                      name: "Dresses"
+                  },
+                  {
+                      name: "Appliances"
+                  },
+                  {
+                      name: "Electronics"
+                  }
+               ] ;
+              $scope.selectDresses = function() {
+                  $scope.Dress = $scope.categories[ 0 ];
+                  data = {
+                        item: $scope.Dress
+                  }
+              };
+              $scope.selectAppliances = function() {
+                  $scope.Appliance = $scope.categories[ 1];
+                  data = {
+                      item: $scope.Appliance
+                  }
+              };
+              $scope.selectElectronics = function() {
+                  $scope.Electronic = $scope.categories[ 2 ];
+                  data = {
+                      item: $scope.Electronic
+                  }
+              };
+              var config = {
+                  headers : {
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                  }
+              };
+              $http.post('/servlet/search', data, config)
+                      .then(function successCallback(response) {
+                          var arr = request.getAttribute("list");
+                          $scope.displayString = response.data;
+                          console.log(response);
+                      }, function errorCallback(response) {
+                          console.log(response);
+                      });
+          };
+
+
+          };
+      });
 
   </script>
   </body>
