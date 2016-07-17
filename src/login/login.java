@@ -7,6 +7,10 @@ import java.sql.*;
 import java.util.*;
 import DBmanager.DBmanager;
 import com.sharu.samples.MyServlet;
+import com.sharu.samples.SearchServlet;
+import com.sharu.samples.SignupServlet;
+
+
 public class login {
     /*public static void main(String[] args) throws Exception {
         //Scanner sc = new Scanner(System.in);
@@ -62,5 +66,27 @@ public class login {
             manager.close_connection();
         }
         return rs;
+    }
+
+    public static List<String> search (String category) throws Exception {
+        DBmanager manager = new DBmanager();
+        List<String> list =  new ArrayList<String>();
+        ResultSet rs = null;
+        try{
+            System.out.println("category:" + category);
+            String sql = "SELECT * FROM category where Category = '" + category + "'";
+            manager.setup_connection();
+            rs = manager.runSelect(sql);
+            while (rs.next()) {
+                String itemName = rs.getString("Category");
+                list.add(itemName);
+            }
+            System.out.println("List selected is: " + list);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            manager.close_connection();
+        }
+        return list;
     }
 }

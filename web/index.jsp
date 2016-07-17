@@ -31,13 +31,18 @@
                   .when('/',
                           {
                               controller:'loginController',
-                              templateUrl: 'src/views/login.html'
+                              templateUrl: 'login.html'
                           })
                   .when('/signup',
                           {
                               controller:'signupController',
-                              templateUrl: 'views/signup.html'
+                              templateUrl: 'signup.html'
                           })
+                  .when('/search',
+                          {
+                              controller: 'searchController',
+                              templateUrl : 'search.html'
+                          }
                   .otherwise({redirectTo:'/'});
       });
     gestire.controller('loginController',function($scope,$http){
@@ -123,7 +128,6 @@
               };
               $http.post('/servlet/search', data, config)
                       .then(function successCallback(response) {
-                          var arr = request.getAttribute("list");
                           $scope.displayString = response.data;
                           console.log(response);
                       }, function errorCallback(response) {

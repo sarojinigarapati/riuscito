@@ -35,12 +35,12 @@ public class SearchServlet extends HttpServlet {
         JSONObject joUser = null;
         JSONObject res = new JSONObject();
         JSONArray  displayItems = new JSONArray();
-        String item = new String();
         try{
             joUser = (JSONObject)new JSONParser().parse(responseString);
-            String itemname = (String)joUser.get("item");
-            item = itemname;
-            displayItems.add(item);
+            String category = (String)joUser.get("item");
+            System.out.println("category selected:" + category);
+            List<String> list = login.search(category);
+            displayItems.add(list);
             res.put("displayItems",displayItems);
         }catch(ParseException e){
             e.printStackTrace();
