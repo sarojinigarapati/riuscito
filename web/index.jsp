@@ -31,21 +31,21 @@
                   .when('/',
                           {
                               controller:'loginController',
-                              templateUrl: 'login.html'
+                              templateUrl: 'views/login.html'
                           })
                   .when('/signup',
                           {
                               controller:'signupController',
-                              templateUrl: 'signup.html'
+                              templateUrl: 'views/signup.html'
                           })
                   .when('/search',
                           {
                               controller: 'searchController',
-                              templateUrl : 'search.html'
-                          }
+                              templateUrl : 'views/search.html'
+                          })
                   .otherwise({redirectTo:'/'});
       });
-    gestire.controller('loginController',function($scope,$http){
+    gestire.controller('loginController',function($scope,$http,$location){
           $scope.handleLogin = function() {
               var data = {
                   username: $scope.username,
@@ -62,6 +62,7 @@
                       .then(function successCallback(response) {
                           $scope.displayString = response.data;
                           console.log(response);
+                          $location.path('/search');
                       }, function errorCallback(response) {
                           console.log(response);
                       });
@@ -89,8 +90,8 @@
         };
 
     });
-      gestire.controller('searchController',function($scope,$http){
-          $scope.handleSearch = function(){
+      gestire.controller('searchController',function($scope,$http,$window) {
+          $scope.handleSearch = function () {
               var data;
               $scope.categories = [
                   {
@@ -102,38 +103,46 @@
                   {
                       name: "Electronics"
                   }
-               ] ;
-              $scope.selectDresses = function() {
-                  $scope.Dress = $scope.categories[ 0 ];
-                  data = {
-                        item: $scope.Dress
+              ];
+              $scope.helper = function(item){
+                  console.log("dresses selected");
+                  if(item.value == "Dresses") {
+                      $scope.Dress = $scope.item.value;
+                      data = {
+                          item: $scope.Dress
+                      }
+                  } else if(item.value == "Appliances") {
+                      $scope.Appliances = $scope.item.value;
+                      data = {
+                          item : $scope.Appliances
+                      }
+                  } else if(item.value == "Electronics"){
+                      $scope.Electronics = $scope.item.value;
+                      data = {
+                          item : $scope.Electronics
+                      }
                   }
-              };
-              $scope.selectAppliances = function() {
-                  $scope.Appliance = $scope.categories[ 1];
-                  data = {
-                      item: $scope.Appliance
-                  }
-              };
-              $scope.selectElectronics = function() {
-                  $scope.Electronic = $scope.categories[ 2 ];
-                  data = {
-                      item: $scope.Electronic
-                  }
-              };
+              }
               var config = {
-                  headers : {
+                  headers: {
                       'Content-Type': 'application/x-www-form-urlencoded'
                   }
               };
               $http.post('/servlet/search', data, config)
                       .then(function successCallback(response) {
-                          $scope.displayString = response.data;
+                          $scope.result = response.data;
+                          var items_array = [];
+                          for(var i in result) {
+                              if(result.hasOwnProperty(i) && !isNaN(+i)) {
+                                  items_array[+i] = result[i];
+                              }
+                          }
+                          //$scope.displayString = response.data;
                           console.log(response);
+                          console.log(ietms_array);
                       }, function errorCallback(response) {
                           console.log(response);
                       });
-          };
 
 
           };

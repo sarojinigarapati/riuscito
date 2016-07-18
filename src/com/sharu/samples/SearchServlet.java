@@ -33,24 +33,25 @@ public class SearchServlet extends HttpServlet {
         String responseString = jb.toString();
         JSONParser parser = new JSONParser();
         JSONObject joUser = null;
-        JSONObject res = new JSONObject();
-        JSONArray  displayItems = new JSONArray();
+        JSONArray jsonArray = new JSONArray();
+        List<String> displayItems = new ArrayList<String>();
         try{
             joUser = (JSONObject)new JSONParser().parse(responseString);
             String category = (String)joUser.get("item");
             System.out.println("category selected:" + category);
             List<String> list = login.search(category);
-            displayItems.add(list);
-            res.put("displayItems",displayItems);
+            displayItems = list;
+            request.setAttribute("listName", displayItems);
+            jsonArray.add(displayItems);
         }catch(ParseException e){
             e.printStackTrace();
         }catch(Exception e){
             e.printStackTrace();
         }
-        if(res !=null){
+        if(displayItems.size() != 0){
             // Display cart information to the user
             response.setContentType("application/json");
-            response.getWriter().write(res.toString());
+            response.getWriter().write(jsonArray.toString());
             response.getWriter().flush();
             response.getWriter().close();
         }else{
@@ -62,6 +63,6 @@ public class SearchServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        // N/A
     }
 }
