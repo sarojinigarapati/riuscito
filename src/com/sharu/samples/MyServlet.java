@@ -60,10 +60,6 @@ public class MyServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<h1> Be like sharu and fuck like sharu!!!!<h1>");
-        out.flush();
-        out.close();
+        // N/A
     }
 }
