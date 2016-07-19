@@ -74,7 +74,7 @@
                 username: $scope.username,
                 password: $scope.password,
                 name: $scope.name
-            }
+            };
             var config = {
                 headers : {
                     'Content-Type': 'application/x-www-form-urlencoded'
@@ -90,9 +90,8 @@
         };
 
     });
-      gestire.controller('searchController',function($scope,$http,$window) {
-          $scope.handleSearch = function () {
-              var data;
+      gestire.controller('searchController',function($scope,$http) {
+          $scope.handleSearch = function (item) {
               $scope.categories = [
                   {
                       name: "Dresses"
@@ -104,48 +103,26 @@
                       name: "Electronics"
                   }
               ];
-              $scope.helper = function(item){
-                  console.log("dresses selected");
-                  if(item.value == "Dresses") {
-                      $scope.Dress = $scope.item.value;
-                      data = {
-                          item: $scope.Dress
-                      }
-                  } else if(item.value == "Appliances") {
-                      $scope.Appliances = $scope.item.value;
-                      data = {
-                          item : $scope.Appliances
-                      }
-                  } else if(item.value == "Electronics"){
-                      $scope.Electronics = $scope.item.value;
-                      data = {
-                          item : $scope.Electronics
-                      }
-                  }
-              }
-              var config = {
-                  headers: {
-                      'Content-Type': 'application/x-www-form-urlencoded'
-                  }
-              };
-              $http.post('/servlet/search', data, config)
-                      .then(function successCallback(response) {
-                          $scope.result = response.data;
-                          var items_array = [];
-                          for(var i in result) {
-                              if(result.hasOwnProperty(i) && !isNaN(+i)) {
-                                  items_array[+i] = result[i];
-                              }
-                          }
-                          //$scope.displayString = response.data;
-                          console.log(response);
-                          console.log(ietms_array);
-                      }, function errorCallback(response) {
-                          console.log(response);
-                      });
-
-
+              $scope.sendCategory(item);
           };
+
+              $scope.sendCategory = function(item){
+                  var data = {
+                      item: item
+                  };
+                  console.log(data);
+                  var config = {
+                      headers: {
+                          'Content-Type': 'application/x-www-form-urlencoded'
+                      }
+                  };
+                  $http.post('/servlet/search', data, config)
+                          .then(function successCallback(response) {
+                              console.log(response.data);
+                          }, function errorCallback(response) {
+                              console.log(response);
+                          });
+              };
       });
 
   </script>

@@ -74,11 +74,11 @@ public class login {
         ResultSet rs = null;
         try{
             System.out.println("category:" + category);
-            String sql = "SELECT * FROM category where Category = '" + category + "'";
+            String sql = "SELECT ProductName FROM products WHERE CategoryName IN (SELECT Category FROM category WHERE Category = '" + category + "')";
             manager.setup_connection();
             rs = manager.runSelect(sql);
             while (rs.next()) {
-                String itemName = rs.getString("Category");
+                String itemName = rs.getString("ProductName");
                 list.add(itemName);
             }
             System.out.println("List selected is: " + list);

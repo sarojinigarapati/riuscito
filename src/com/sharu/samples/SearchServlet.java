@@ -6,6 +6,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,10 +40,9 @@ public class SearchServlet extends HttpServlet {
         try{
             joUser = (JSONObject)new JSONParser().parse(responseString);
             String category = (String)joUser.get("item");
-            System.out.println("category selected:" + category);
-            List<String> list = login.search(category);
-            displayItems = list;
-            request.setAttribute("listName", displayItems);
+            System.out.println("category selected: " + category);
+            displayItems = login.search(category);
+            System.out.println("display items : " + displayItems);
             jsonArray.add(displayItems);
         }catch(ParseException e){
             e.printStackTrace();
