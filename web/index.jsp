@@ -43,9 +43,16 @@
                               controller: 'searchController',
                               templateUrl : 'views/search.html'
                           })
+                  .when('/choose',
+                          {
+                            controller: 'chooseController',
+                              templateUrl: 'views/choose.html'
+                          })
                   .otherwise({redirectTo:'/'});
       });
     gestire.controller('loginController',function($scope,$http,$location){
+        $scope.username = "sarojini";
+        $scope.password = "grey";
           $scope.handleLogin = function() {
               var data = {
                   username: $scope.username,
@@ -90,7 +97,7 @@
         };
 
     });
-      gestire.controller('searchController',function($scope,$http) {
+      gestire.controller('searchController',function($scope,$http,fact,$location) {
           $scope.handleSearch = function (item) {
               $scope.categories = [
                   {
@@ -119,10 +126,41 @@
                   $http.post('/servlet/search', data, config)
                           .then(function successCallback(response) {
                               console.log(response.data);
+                              fact.foo = response.data;
                           }, function errorCallback(response) {
                               console.log(response);
                           });
               };
+          $scope.click = function(){
+              $location.path('/choose');
+            //fact.display();
+          };
+      });
+
+    gestire.factory('fact', function() {
+
+        var fact = {
+            foo: ''
+        };
+        return {
+            display : display
+        };
+
+        function display() {
+            var input = fact.foo;
+            display = function () {
+                var len = input.length;
+                var arr = [];
+                for (i = 0; i < len; i++) {
+                    arr += input[i];
+                }
+                console.log(arr);
+                $scope.items = arr;
+                console.log($scope.items);
+            }};
+    });
+      gestire.controller('chooseController',function($scope,$http,fact){
+            fact.display();
       });
 
   </script>
