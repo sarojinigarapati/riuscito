@@ -5,13 +5,11 @@
     <title>Choose</title>
 </head>
 <body>
-<!--<div ng-repeat = "item in items">{{item}}-->
-    <!--&lt;!&ndash;<ul>&ndash;&gt;-->
-        <!--&lt;!&ndash;<li ng-repeat="item in items"><a href="/">{{item}}</a></li>&ndash;&gt;-->
-    <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-
-
-<!--</div>-->
-<h1> this is choose page</h1>
+<ul>
+    <li ng-repeat="item in items1">
+            {{item.name}} {{item.price}}
+            <button data-ng-click="AddtoCart(item);">Add to cart</button>
+    </li>
+</ul>
 </body>
 </html>

@@ -9,6 +9,11 @@ import DBmanager.DBmanager;
 import com.sharu.samples.MyServlet;
 import com.sharu.samples.SearchServlet;
 import com.sharu.samples.SignupServlet;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.json.simple.JSONArray;
+import java.util.stream.*;
 
 
 public class login {
@@ -51,6 +56,7 @@ public class login {
         }
         return false;
     }
+
     public static int register(String username, String password, String name) throws Exception {
         DBmanager manager = new DBmanager();
         Integer rs = 1;
@@ -68,20 +74,22 @@ public class login {
         return rs;
     }
 
-    public static List<String> search (String category) throws Exception {
+    public static List<Product> search (String category) throws Exception {
         DBmanager manager = new DBmanager();
-        List<String> list =  new ArrayList<String>();
+        List<Product> list = new ArrayList<Product>();
         ResultSet rs = null;
         try{
             System.out.println("category:" + category);
-            String sql = "SELECT ProductName FROM products WHERE CategoryName IN (SELECT Category FROM category WHERE Category = '" + category + "')";
+            String sql = "SELECT ProductName,ProductPrice FROM products WHERE CategoryName IN (SELECT Category FROM category WHERE Category = '" + category + "')";
             manager.setup_connection();
             rs = manager.runSelect(sql);
             while (rs.next()) {
-                String itemName = rs.getString("ProductName");
-                list.add(itemName);
+                Product p = new Product();
+                p.setName(rs.getString("ProductName"));
+                p.setPrice(rs.getString("ProductPrice"));
+                list.add(p);
+                System.out.println(p.getName() + " - " + p.getPrice());
             }
-            System.out.println("List selected is: " + list);
         } catch (SQLException ex) {
             ex.printStackTrace();
         } finally {
@@ -89,4 +97,12 @@ public class login {
         }
         return list;
     }
+    public static String listToString(List<?> list) {
+        String result = "+";
+        for (int i = 0; i < list.size(); i++) {
+            result += " " + list.get(i);
+        }
+        return result;
+    }
 }
+

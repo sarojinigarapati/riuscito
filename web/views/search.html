@@ -11,9 +11,9 @@
     <!--<div class="dropdown-list">-->
         <div>
             <div >
-                <select name = "category" ng-model = "category" ng-change = "handleSearch(category)" >
+                <select name = "category" ng-model = "category"  ng-change = "handleSearch(category)" >
                     <option ng-option="option in categories" value="{{option.name}}">{{option.name}}</option>
-                    <option value="">---Please select---</option>
+                    <option value="" disabled selected>Please Select</option>
                     <option value="Dresses">Dresses</option>
                     <option value="Appliances">Appliances</option>
                     <option value = "Electronics"> Electronics </option>

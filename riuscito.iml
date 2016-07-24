@@ -23,5 +23,8 @@
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 7.0.68" level="application_server_libraries" />
     <orderEntry type="library" name="json-simple-1.1" level="application" />
     <orderEntry type="library" name="mysql-connector-java-5.1.39-bin" level="application" />
+    <orderEntry type="library" name="jackson-databind-2.7.0" level="application" />
+    <orderEntry type="library" name="jackson-annotations-2.7.0" level="application" />
+    <orderEntry type="library" name="jackson-core-2.8.0" level="application" />
   </component>
 </module>

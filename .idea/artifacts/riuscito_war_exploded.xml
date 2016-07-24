@@ -11,6 +11,9 @@
           <element id="library" level="project" name="javax.json.processing-1.0" />
           <element id="library" level="application" name="json-simple-1.1" />
           <element id="library" level="application" name="mysql-connector-java-5.1.39-bin" />
+          <element id="library" level="application" name="jackson-databind-2.7.0" />
+          <element id="library" level="application" name="jackson-annotations-2.7.0" />
+          <element id="library" level="application" name="jackson-core-2.8.0" />
         </element>
       </element>
     </root>

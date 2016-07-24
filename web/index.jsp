@@ -10,8 +10,7 @@
   <head>
     <meta charset="utf-8" />
     <script type = "text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.0/css/normalize.css"/>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.4.0/css/foundation.css"/>
+      <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
     <script type = "text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
       <%--<script type = "text/javascript" src="index.jsp"></script>--%>
@@ -50,7 +49,7 @@
                           })
                   .otherwise({redirectTo:'/'});
       });
-    gestire.controller('loginController',function($scope,$http,$location){
+    gestire.controller('loginController',function($scope,$rootScope,$http,$location){
         $scope.username = "sarojini";
         $scope.password = "grey";
           $scope.handleLogin = function() {
@@ -58,8 +57,8 @@
                   username: $scope.username,
                   password: $scope.password
               };
+              $rootScope.username1 = $scope.username;
               console.log(data);
-
               var config = {
                   headers : {
                       'Content-Type': 'application/x-www-form-urlencoded'
@@ -97,7 +96,8 @@
         };
 
     });
-      gestire.controller('searchController',function($scope,$http,fact,$location) {
+      gestire.controller('searchController',function($scope,$rootScope,$http,$location) {
+          $scope.name = $rootScope.username1;
           $scope.handleSearch = function (item) {
               $scope.categories = [
                   {
@@ -113,54 +113,36 @@
               $scope.sendCategory(item);
           };
 
-              $scope.sendCategory = function(item){
-                  var data = {
-                      item: item
-                  };
-                  console.log(data);
-                  var config = {
-                      headers: {
-                          'Content-Type': 'application/x-www-form-urlencoded'
-                      }
-                  };
-                  $http.post('/servlet/search', data, config)
-                          .then(function successCallback(response) {
-                              console.log(response.data);
-                              fact.foo = response.data;
-                          }, function errorCallback(response) {
-                              console.log(response);
-                          });
+          $scope.sendCategory = function(item){
+              var data = {
+                  item: item
               };
+              console.log(data);
+              var config = {
+                  headers: {
+                      'Content-Type': 'application/x-www-form-urlencoded'
+                  }
+              };
+              $http.post('/servlet/search', data, config)
+                      .then(function successCallback(response) {
+                          console.log(response.data);
+                          $rootScope.items = response.data;
+                      }, function errorCallback(response) {
+                          console.log(response);
+                      });
+          };
           $scope.click = function(){
               $location.path('/choose');
-            //fact.display();
           };
       });
 
-    gestire.factory('fact', function() {
-
-        var fact = {
-            foo: ''
-        };
-        return {
-            display : display
-        };
-
-        function display() {
-            var input = fact.foo;
-            display = function () {
-                var len = input.length;
-                var arr = [];
-                for (i = 0; i < len; i++) {
-                    arr += input[i];
-                }
-                console.log(arr);
-                $scope.items = arr;
-                console.log($scope.items);
-            }};
-    });
-      gestire.controller('chooseController',function($scope,$http,fact){
-            fact.display();
+      gestire.controller('chooseController',function($scope,$rootScope,$http) {
+          $scope.items1 = $rootScope.items;
+          $scope.cart = [];
+          $scope.AddtoCart = function(product){
+              $scope.cart.push(product);
+              console.log("cart: " + angular.toJson($scope.cart));
+          };
       });
 
   </script>
