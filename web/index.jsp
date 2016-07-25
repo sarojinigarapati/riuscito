@@ -47,6 +47,11 @@
                             controller: 'chooseController',
                               templateUrl: 'views/choose.html'
                           })
+                  .when('/cart',
+                          {
+                            controller: 'cartController',
+                              templateUrl: 'views/cart.html'
+                          })
                   .otherwise({redirectTo:'/'});
       });
     gestire.controller('loginController',function($scope,$rootScope,$http,$location){
@@ -96,7 +101,23 @@
         };
 
     });
-      gestire.controller('searchController',function($scope,$rootScope,$http,$location) {
+
+    gestire.factory('cartFactory', function($location){
+        var fact = {};
+        var cart = [];
+        fact.DisplayCart = function(){
+            $location.path('/cart');
+        };
+        fact.pushToCart = function(product){
+            cart.push(product);
+            console.log("cart: " + angular.toJson(cart));
+        };
+        fact.getCart = function(){
+            return cart;
+        };
+        return fact;
+    });
+      gestire.controller('searchController',function($scope,$rootScope,$http,$location,cartFactory) {
           $scope.name = $rootScope.username1;
           $scope.handleSearch = function (item) {
               $scope.categories = [
@@ -134,17 +155,34 @@
           $scope.click = function(){
               $location.path('/choose');
           };
-      });
-
-      gestire.controller('chooseController',function($scope,$rootScope,$http) {
-          $scope.items1 = $rootScope.items;
-          $scope.cart = [];
-          $scope.AddtoCart = function(product){
-              $scope.cart.push(product);
-              console.log("cart: " + angular.toJson($scope.cart));
+          $scope.DisplayCart = function(){
+              cartFactory.DisplayCart();
           };
       });
 
+      gestire.controller('chooseController',function($scope,$rootScope,$location,$http,cartFactory) {
+          $scope.items1 = $rootScope.items;
+          $scope.AddtoCart = function(product){
+              cartFactory.pushToCart(product);
+          };
+          $scope.DisplayCart = function() {
+              cartFactory.DisplayCart();
+          };
+      });
+
+      gestire.controller('cartController',function($scope,$location,$http,cartFactory){
+          console.log($scope.cartContents);
+            $scope.cartContents = cartFactory.getCart();
+          console.log($scope.cartContents);
+          $scope.$on('$routeChangeStart', function ($scope, next, current) {
+              if (next.$$route.controller == "loginController") {
+                  $location.path('/');
+              }
+              if (next.$$route.controller == "searchController") {
+                  $location.path('/search');
+              }
+          });
+      });
   </script>
   </body>
 </html>
