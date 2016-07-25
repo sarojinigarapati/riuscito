@@ -7,6 +7,10 @@
 <body>
 <div>
     Displaying items in  the cart
+    <!--TODO remove below hack-->
+    <div ng-if="false">
+        {{cartContents}}
+    </div>
     <ul>
         <li ng-repeat = "product in cartContents">
             product name is {{product.name}} and product price is {{product.price}}
