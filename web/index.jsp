@@ -105,12 +105,23 @@
     gestire.factory('cartFactory', function($location){
         var fact = {};
         var cart = [];
+        var quantity = 0;
         fact.DisplayCart = function(){
             $location.path('/cart');
         };
         fact.pushToCart = function(product){
-            cart.push(product);
-            console.log("cart: " + angular.toJson(cart));
+            var found = false;
+            angular.forEach(cart, function(item) {
+                if ( item.name == product.name) { // Found it
+                    found = true;
+                    item.quantity += 1; // Add one
+                    item.price = product.price;
+                }
+            });
+            if (!found) {
+                cart.push(angular.extend({quantity: 1}, product));
+            }
+
         };
         fact.getCart = function(){
             return cart;
@@ -182,6 +193,16 @@
                   $location.path('/search');
               }
           });
+          $scope.getCartPrice = function(){
+                var total = 0;
+              $scope.cartContents.forEach(function (product) {
+                  total += parseFloat(product.price.replace('$',' ')) * product.quantity;
+                  console.log("parseInt:" + parseFloat(product.price.replace('$',' ')));
+                  console.log("each stage: " + product.quantity);
+              });
+              console.log("total price: " + total);
+              return total;
+          };
       });
   </script>
   </body>
