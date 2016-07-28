@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="afb10363-ea4e-4521-892f-d350eea1561f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/index.jsp" afterPath="$PROJECT_DIR$/web/index.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/views/cart.html" afterPath="$PROJECT_DIR$/web/views/cart.html" />
     </list>
     <ignored path="riuscito.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,20 +26,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/web/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.230769">
-              <caret line="198" column="69" selection-start-line="198" selection-start-column="69" selection-end-line="198" selection-end-column="69" />
+            <state vertical-scroll-proportion="1.2560241">
+              <caret line="202" column="37" selection-start-line="202" selection-start-column="37" selection-end-line="202" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cart.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cart.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/views/cart.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5391566">
+            <state vertical-scroll-proportion="-6.8846154">
               <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
               <folding />
             </state>
@@ -685,12 +684,19 @@
       <created>1469554665324</created>
       <option name="number" value="Default" />
       <updated>1469554665324</updated>
-      <workItem from="1469554667894" duration="6136000" />
+      <workItem from="1469554667894" duration="6863000" />
     </task>
+    <task id="LOCAL-00001" summary="done till displaying total cart price successfully">
+      <created>1469564429049</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1469564429049</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6136000" />
+    <option name="totallyTimeSpent" value="6863000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1370" height="735" extended-state="0" />
@@ -723,8 +729,20 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="done till displaying total cart price successfully" />
+    <option name="LAST_COMMIT_MESSAGE" value="done till displaying total cart price successfully" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -735,18 +753,18 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/index.jsp">
+    <entry file="file://$PROJECT_DIR$/web/views/cart.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.230769">
-          <caret line="198" column="69" selection-start-line="198" selection-start-column="69" selection-end-line="198" selection-end-column="69" />
+        <state vertical-scroll-proportion="-6.8846154">
+          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/views/cart.html">
+    <entry file="file://$PROJECT_DIR$/web/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5391566">
-          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+        <state vertical-scroll-proportion="1.2560241">
+          <caret line="202" column="37" selection-start-line="202" selection-start-column="37" selection-end-line="202" selection-end-column="37" />
           <folding />
         </state>
       </provider>

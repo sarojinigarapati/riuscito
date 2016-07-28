@@ -197,11 +197,11 @@
                 var total = 0;
               $scope.cartContents.forEach(function (product) {
                   total += parseFloat(product.price.replace('$',' ')) * product.quantity;
-                  console.log("parseInt:" + parseFloat(product.price.replace('$',' ')));
-                  console.log("each stage: " + product.quantity);
               });
-              console.log("total price: " + total);
               return total;
+          };
+          $scope.checkout = function(){
+              $location.path('/');
           };
       });
   </script>
